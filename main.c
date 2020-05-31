@@ -11,17 +11,18 @@ int main(void) {
   int num_cat, num_itens;
   
 //Definindo contador de categorias, itens e auxiliares.  
-  int tot_cat, tot_itens = 0, i = 0, x = 0, y = 0, cont;
+  int tot_cat, tot_itens = 0, i = 0, x = 0, y = 0,z = 0, cont;
 
 //Variáveis de informações de itens.  
-  char nome_cat[num_cat][26], nome_item[tot_itens][16], itens[tot_itens];
+  char nome_cat[num_cat][26], nome_item[16];
   char uni_med[4], uni_mon[3];
   double qtd[num_itens], val_unit[num_itens];
  
 //Variáveis para pagamento.
   char tipo_pag;
-  double desc, tot_desc, total_item[x], total_cat[i], total = 0,  tot_pag, min_parc, val_parc;
+  double desc, tot_desc, total_item[x], total_cat[11], total = 0,  tot_pag, min_parc, val_parc;
   int num_par;
+  char *item[15];
 
 
 //Recebe a quantidade de categorias.
@@ -37,14 +38,16 @@ int main(void) {
 
 //Recebe as informações sobre os itens.
     for(int x = 0; x < num_itens; x++ ) {
-      scanf("%s %lf %s %s %lf",nome_item[x], &qtd[x], uni_med, uni_mon, &val_unit[x]);
+      scanf("%s %lf %s %s %lf", nome_item, &qtd[x], uni_med, uni_mon, &val_unit[x]);
+      item[tot_itens] = nome_item;
 
 /*Multiplica o valor unitário do item x pela quantidade
  *de itens e atribui ao total da categoria (total_item).
  */    
+      total_cat[i] = 0;
       total_item[x] = val_unit[x] * qtd[x];
       total_cat[i]  = total_cat[i] + total_item[x];
-    
+
 /*Insere a cada ciclo o número de itens a tot_itens, que 
  *soma o total de itens no código inteiro.
  *Realiza o mesmo para o valor total da compra total_cat.*/    
@@ -79,15 +82,17 @@ int main(void) {
 // Printa os valores finais.
   printf("\n\nGuilherme Cordeiro Peixoto\n");
   printf("guilherme.cordeiro3@hotmail.com\n\n");
- 
-  for (int i = 0; i < num_cat; i++){
-    printf("%s\n", nome_cat[i]);
-    for(x = 0; x < num_itens; x++){
-      printf("* %s: %s %.2lf (%.1lf %s)\n", nome_item[x], uni_mon, total_item[x],qtd[x],uni_med);
-    }
+
+    for (int y = 0; y < num_cat; y++){
+      printf("%s\n", nome_cat[y]);
+      for(x = 0; x < num_itens; x++){
+        printf("*%s : %s %.2lf (%.1lf %s)\n", item[tot_itens], uni_mon, total_item[x],qtd[x],uni_med);
+      }
     printf("** TOTAL %s: R$ %.2lf\n",nome_cat[y], total_cat[cont]);
     ++cont;
-  }
+    
+    }
+
   printf("TOTAL DE ITENS: %d \n", tot_itens);
   printf("VALOR TOTAL: R$ %.2lf\n", total);
   printf("DESCONTO: %.2lf %%\n", desc);
